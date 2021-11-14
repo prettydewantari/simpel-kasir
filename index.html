@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="style.css" />
+    <head>
+        <title>Simple Cashier</title>
+    </head>
+    <body>
+        <h2>Cashier Manager</h2>
+        <h3>Fruits Pricelist</h3>
+        <ul>
+            <li>Apel - Rp. 23.000 /kg</li>
+            <li>Pisang - Rp. 12.000 /kg</li>
+            <li>Anggur - Rp. 35.000 /kg</li>
+            <li>Mangga - Rp. 17.000 /kg</li>
+        </ul>
+        
+        <hr>
+        <h4>Your Order</h4>
+        <label for="fruits">Fruits :</label>
+        <select id="fruits">
+            <option value="choose">enter....</option>
+            <option value="Apel">Apel</option>
+            <option value="Pisang">Pisang</option>
+            <option value="Anggur">Anggur</option>
+            <option value="Mangga">Mangga</option>
+        </select>
+        <br>
+        <br>
+        <input type="number" id="kilo" placeholder="number of kilograms" style="width: 250px;">
+        <br>
+        <br>
+        <input type="number" id="diskon" placeholder="enter discount (0% - 100%)" style="width: 250px;">
+        <br>
+        <br>
+        <button onclick="proses()">Total</button>
+        <br>
+        <br>
+        <hr>
+
+        <br>
+        <h1>Bill Amount</h1>
+        <p id="total">--</p>
+
+        <script>
+            function proses()
+            {
+                var fruits = document.getElementById('fruits').value;
+                var kilo = document.getElementById('kilo').value;
+                var diskon = document.getElementById('diskon').value;
+    
+                total(fruits, kilo, diskon);
+            }
+    
+            function total(fruits, kilo, diskon)
+            {
+                var priceFruits = getPriceFruits(fruits);
+                document.getElementById('total').innerHTML = ("Jenis Buah : " + fruits + "<br>");
+                document.getElementById('total').innerHTML += ("Harga Buah / Kg : Rp. " + priceFruits + "<br>");
+                document.getElementById('total').innerHTML += ("Jumlah Kg : " + kilo + "kg<br>");
+                document.getElementById('total').innerHTML += ("Potongan Diskon : " + diskon + "%<br>");
+                document.getElementById('total').innerHTML += ("Besar Diskon : Rp. " + (diskon/100) * (priceFruits * kilo) + "<br>");
+    
+                document.getElementById('total').innerHTML += ("<br>Sub Total : Rp. " + (priceFruits * kilo) + "<br>");
+                document.getElementById('total').innerHTML += ("Total : Rp. " + ((priceFruits * kilo) - (diskon/100) * (priceFruits * kilo)) );
+            }
+    
+            function getPriceFruits(fruits)
+            {
+                var priceFruits;
+    
+                if (fruits == 'Apel')
+                {
+                    priceFruits = 23000;
+                }
+                else if (fruits == 'Pisang')
+                {
+                    priceFruits = 12000;
+                }
+                else if (fruits == 'Anggur')
+                {
+                    priceFruits = 35000;
+                }
+                else if (fruits == 'Mangga')
+                {
+                    priceFruits = 17000;
+                }
+    
+                return priceFruits;
+            }
+
+        </script>
+
+          <footer>
+          <div class="legacyText">© 2021 | jakarta</div>
+        </footer>
+
+    </body>
+</html>
